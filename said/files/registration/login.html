@@ -1,0 +1,50 @@
+{% extends "saidapp/home.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+  <p>Проверьте правильность введённых данных!</p> 
+  <p>Вероятно, допущена ошибка при вводе логина или пароля...</p>
+{% endif %}
+
+    {% if user.is_authenticated %}
+
+       {% block nav-global %}
+<div style="text-align: center; margin: auto;">       <h1> User: {{ user.get_username }}</h1>
+    <a class="btn btn-primary mt-0" href="{% url 'passwordchange' %}" style="text-align: center;">Изменить пароль</a>
+<p>
+</p>
+<a class="btn btn-primary mt-0" href="{% url 'password_reset' %}" style="text-align: center;">Сбросить пароль</a>
+<p></p>    <a class="btn btn-primary mt-0" href="{% url 'logout' %}" style="text-align: center;">Выйти</a> 
+</div>
+
+{% endblock %}
+
+    {% else %}
+    <h3 style="text-align: center; margin: auto;">Войдите, чтобы просматривать эту страницу.</h3>
+    <p></p>
+
+<form method="post" action="{% url 'login' %}" style="text-align: center; margin: auto;">
+{% csrf_token %}
+<table style="text-align: center; margin: auto;">
+
+<tr>
+  <td>Пользователь: </td> 
+  <td>{{ form.username }}</td>
+</tr>
+
+<tr>
+  <td>Пароль: </td>
+  <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" style="margin-right: -5%; width: 10%" value="Войти"  class="btn btn-primary mt-0"/>
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+
+<p style="text-align: center; margin: auto; margin-right: -5%" ><a class="btn btn-secondary mt-1" href="{% url 'password_reset' %}" >Забыли пароль?</a></p>
+{% endif %}
+{% endblock %}

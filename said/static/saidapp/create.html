@@ -1,0 +1,20 @@
+{% extends 'book_app/products.html' %}
+{% load static %}
+{% block title %}
+Добавить товар
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <h1 style="color: darkgray">Добавить товар</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.title }}<br>
+        {{ form.task }}<br>
+        {{ form.price }}<br>
+        {{ form.distributor}}<br>
+        {{ form.type_good }}<br>
+        <button type="submit" class="btn-secondary">Добавить</button>
+        <span>{{ error }}</span>
+       </form>
+{% endblock %}

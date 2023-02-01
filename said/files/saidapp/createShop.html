@@ -1,0 +1,19 @@
+{% extends 'saidapp/markets.html' %}
+{% load static %}
+{% block title %}
+Добавить магазин
+{% endblock %}
+
+{% block content %}
+    <!--<link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <h1 style="color: darkgray">Добавить магазин</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p></p>
+        {{ form.address }}<br>
+        {{ form.admin_id }}<br>
+<p></p>
+        <button type="submit" class="btn-secondary">Добавить</button>
+        <span>{{ error }}</span>
+       </form>
+{% endblock %}
