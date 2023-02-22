@@ -9,7 +9,6 @@ from django.db.models import Q
 from .models import product, Market, Client, Order
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from typing import List, Any, Union
-from django.contrib.auth import logout
 
 from django.forms import NumberInput, TextInput, Textarea
 from django.shortcuts import render, redirect
@@ -20,6 +19,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from .models import product, Market, Client, Order
 from .forms import TaskForm, ShopForm, ClientForm, OrderForm
 
+#def navbar(request):
+#	return render(request, 'saidapp/home.html')
 # Create your views here.
 def home(request):
     return render(request, 'saidapp/home.html')
@@ -32,10 +33,10 @@ def logout(request):
         return render(request, 'registration/logout.html')
 
 def profile(request):
-    return redirect('home')
+    return render(request, 'registration/login.html')
 
 def passwordchange(request):
-    return render(request, 'registration/password_change.html')
+    return render(request, 'registration/password_change_form.html')
 
 def products(request):
     if request.user.is_anonymous:
@@ -110,6 +111,14 @@ def createOrder(request):
 def order_add(request):
     return redirect('/admin/saidapp/order/add/')
     
+def order_edit(request):
+	return redirect('/admin/saidapp/order/edit/')
+
+    
+def order_delete(request):
+    return redirect('/admin/saidapp/order/delete/')
+
+    
 def Markets(request):
 	markets = Market.objects.all()
 	if request.user.is_anonymous: 
@@ -120,13 +129,11 @@ def Markets(request):
 			markets = Market.objects.filter(Q(address=search_query))
 		else:
 			markets = Market.objects.all()
-			return render(request, 'saidapp/markets.html', {'title': 'Список магазинов', 'markets': markets})
-		return render(request, 'saidapp/markets.html', {'title': 'Список магазинов', 'markets': markets})
+			return render(request, 'saidapp/markets.html', {'title': 'Список аптек', 'markets': markets})
+		return render(request, 'saidapp/markets.html', {'title': 'Список аптек', 'markets': markets})
 
 
 from typing import List, Any, Union
-from django.contrib.auth import logout
-
 from django.forms import NumberInput, TextInput, Textarea
 from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, DeleteView
@@ -153,7 +160,7 @@ def Markets(request):
             markets = Market.objects.filter(Q(address=search_query))
         else:
             markets = Market.objects.all()
-        return render(request, 'saidapp/markets.html', {'title': 'Список магазинов', 'markets': markets})
+        return render(request, 'saidapp/markets.html', {'title': 'Список Аптек', 'markets': markets})
 
 
 def products(request):
@@ -193,6 +200,28 @@ def create(request):
         return render(request, 'saidapp/create.html', context)
 
 
+def edit(request):
+    if request.user.is_anonymous:
+        return redirect('login')
+    if not request.user.has_perm('admin_permission'):
+        return redirect('LogError')
+    if request.user.is_authenticated:
+        error = ''
+        if request.method == 'POST':
+            form = TaskForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('products')
+            else:
+                error = 'Форма была неверной'
+        form = TaskForm()
+        context = {
+            'form': form,
+            'error': error
+        }
+        return render(request, 'saidapp/edit.html', context)
+
+
 def createShop(request):
     if request.user.is_anonymous:
         return redirect('login')
@@ -214,13 +243,6 @@ def createShop(request):
         }
         return render(request, 'saidapp/createShop.html', context)
 
-
-def log_out(request):
-    if request.user.is_anonymous:
-        return redirect('home')
-    if request.user.is_authenticated:
-        logout(request)
-        return render(request, 'registration/logout.html')
 
 
 #def password_reset(request):
@@ -264,19 +286,6 @@ def createClient(request):
         }
         return render(request, 'saidapp/createClient.html', context)
 
-
-def Orders(request):
-    global od
-    if request.user.is_anonymous:
-        return redirect('login')
-    if request.user.is_authenticated:
-        search_query = request.GET.get('search', '')
-        if search_query:
-            Orders = Order.objects.filter(Q(product_deal=search_query) | Q(idOrder=search_query))
-        else:
-            Orders = Order.objects.all()
-        return render(request, 'saidapp/orders.html',
-                      {'title': 'Список заказов', 'Order': Orders})
 
 def createOrder(request):
     if request.user.is_anonymous:

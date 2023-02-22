@@ -1,11 +1,10 @@
-{% extends 'saidapp/orders.html' %}
+{% extends 'saidapp/home.html' %}
 {% load static %}
 {% block title %}
 Оформить заказ
 {% endblock %}
 
 {% block content %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <h1 style="color: darkgray">Оформить заказ</h1>
     <form method="post">
         {% csrf_token %}
@@ -19,7 +18,7 @@
         <p>Способ оплаты:</p>
         {{ form.payment }}<br>
 <p></p>
-        <button type="submit" class="btn-secondary" style="margin-left: 40%;">Добавить</button>
+        <button type="submit" class="btn-secondary">Добавить</button>
         <span>{{ error }}</span>
        </form>
 {% endblock %}

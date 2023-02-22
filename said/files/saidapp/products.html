@@ -1,7 +1,7 @@
   {% extends 'saidapp/home.html' %}
 {% block content %}
 <form name="create">
-      <a class="btn btn-primary mt-2" href="/create/" style="margin-left: 40%;">Добавить новый товар</a>
+      <a class="btn btn-primary mt-2" href="/create/" style="display: flex;">Добавить новое лекарство</a>
 </form>
 <p></p>
 {% for el in tasks %}
@@ -13,9 +13,11 @@
       <p> Артикул: {{ el.id }} </p>
       <p> Цена: {{ el.price }} </p>
       <form name="edit">
-      <a class="btn btn-primary mt-2" href="/edit/" style="margin-left: 40%;">Редактирровать</a>
+		  <!--<a class="related-widget-wrapper-link change-related" id="change_id_product_deal" data-href-template="/admin/saidapp/product/__fk__/change/?_to_field=id&amp;_popup=1" data-popup="yes" title="Редактировать лекарство" href="/admin/saidapp/product/{{ el.id }}/change/?_to_field=id&amp;_popup=1"><img src="/files/admin/img/icon-changelink.svg" alt="Редактировать"></a>
+		  -->     <a class="btn btn-primary mt-2" href="/edit/" style="display: flex;">Редактировать</a>	      </form>
+<form name="delete">
+            <a class="btn btn-danger mt-2" href="/admin/saidapp/order/{{ el.id }}/delete/" style="display: flex;">Удалить</a>
 </form>
-
 
 
     </div>

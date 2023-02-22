@@ -17,6 +17,7 @@ urlpatterns =+ [
     url('createClient/', views.createClient, name='createShop'),
     url('orders/', views.Orders, name='orders_page'),
     url('createOrder', views.createOrder, name='createOrder'),
+    url('change_password', admin.site.urls, name='passwordchange')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
