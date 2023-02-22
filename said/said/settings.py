@@ -56,8 +56,9 @@ ROOT_URLCONF = 'said.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '/home/c0wb0y/DEVELOPMENT/Said/said/files'),
-        os.path.join(BASE_DIR, '/home/c0wb0y/DEVELOPMENT/Said/said/files')],
+        'DIRS': [os.path.join(BASE_DIR, '/home/gadji/Desktop/website/Said/said/files'),
+
+        os.path.join(BASE_DIR, '/home/gadji/Desktop/website/Said/said/files')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
