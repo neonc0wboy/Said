@@ -1,0 +1,68 @@
+{% include 'saidapp/navbar.css' %}
+
+{% block navbar %}
+{% load static %}
+
+
+
+   <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+      <a id="navbar" class="navbar-brand" href="/">Аптека</a>
+      <button class="navbar-toggler" style="text-align: right; display: flex;" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto" style="margin: auto;">
+          <li class="nav-item-active">
+            <a href="/products/">Список лекарств</a>
+            </li>
+            <li class="nav-item">
+            <a href="/markets/">Аптеки</a>
+          </li>
+          <li class="nav-item">
+            <a href="/clients/">Сотрудники</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/clients/">Клиенты</a>
+          </li>
+          <li class="nav-item">
+            <a href="/orders/">Заказы</a>
+          </li>
+          {% if user.is_anonymous %}
+          <li class="nav-item">
+            <a href="{% url 'login' %}">Авторизация</a>
+            <form method="post" action="{% url 'login' %}" style="text-align: center; margin: auto;">
+{% csrf_token %}
+<table style="text-align: center; margin: auto;">
+
+<tr>
+  <td>Пользователь: </td> 
+  <td></td>
+  <td>{{ form.username }}</td>
+</tr>
+
+<tr>
+  <td>Пароль: </td>
+  <td></td>
+  <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" style="width: 10%" value="Войти"  class="btn btn-primary mt-0"/>
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+          {% endif %}
+                {% if user.is_authenticated %}
+<form name="logout" style="text-align: center; margin: auto;">
+      <a class="nav-link" style="text-align: center; margin: auto;" href="{% url 'login' %}">User: {{ user.get_username }}</a>
+    <a class="btn btn-primary mt-0" href="{% url 'logout' %}" style="text-align: center;">Выйти</a>
+</form>{% endif %}
+          </li>
+          <li><form class="form-inline my-2 my-lg-0" style="text-align: right; display: flex;">
+                <input class="form-control mr-sm-2" type="text" placeholder="Поиск" name="search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Поиск</button>
+        </form>
+      </div></li></ul>
+    </nav>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'book_app/home.html' %}
+{% block content %}
+<form name="createShop">
+    <a class="btn btn-primary mt-2" href="/createShop/" style="margin-left: 40%;">Добавить новый магазин</a>
+</form>
+<p></p>
+{% for em in markets %}
+    <div class="alert alert-warning mt-auto">
+        <h3>Адрес магазина: {{ em }} </h3>
+        <p> ID магазина: {{ em.id }}</p>
+        <p> Администратор: {{ em.admin_id }} </p>
+        <p></p>
+    </div>
+
+{% endfor %}
+{% endblock %}

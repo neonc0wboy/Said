@@ -1,0 +1,16 @@
+{% extends 'saidapp/home.html' %}
+{% block content %}
+
+<form name="createOrder">
+    <a class="btn btn-primary mt-2" href="/createOrder/">Оформить заказ</a>
+</form>
+<p></p>
+
+{% for od in Order %}
+    <div class="alert alert-warning mt-auto">
+        <h3>Клиент: {{ od }} </h3>
+        <p></p>
+    </div>
+
+{% endfor %}
+{% endblock %}

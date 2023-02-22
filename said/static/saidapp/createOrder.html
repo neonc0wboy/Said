@@ -1,0 +1,25 @@
+{% extends 'book_app/orders.html' %}
+{% load static %}
+{% block title %}
+Оформить заказ
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <h1 style="color: darkgray">Оформить заказ</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p></p>
+        Выберите товар или услугу: {{ form.product_deal }}<br>
+        Потребуется ли доставка? {{ form.delivery }}<br>
+        Выберите магазин в котором оформлена сделка: {{ form.address }}<br>
+        Выберите сотрудника: {{form.admin_id }}<br></script>
+        Выберите дату оформления: {{ form.date_order}}<br>
+        Выберите клиента: {{ form.idClient }}<br>
+        <p>Способ оплаты:</p>
+        {{ form.payment }}<br>
+<p></p>
+        <button type="submit" class="btn-secondary" style="margin-left: 40%;">Добавить</button>
+        <span>{{ error }}</span>
+       </form>
+{% endblock %}

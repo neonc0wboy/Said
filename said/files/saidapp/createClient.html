@@ -1,0 +1,21 @@
+{% extends 'saidapp/clients.html' %}
+{% load static %}
+{% block title %}
+Добавить клиента
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <h1 style="color: darkgray">Добавить клиента</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p></p>
+        {{ form.surname }}<br>
+        {{ form.name }}<br>
+        {{ form.middlename }}<br>
+        {{ form.telephone }}<br>
+<p></p>
+        <button type="submit" class="btn-secondary" style="margin-left: 40%;">Добавить</button>
+        <span>{{ error }}</span>
+       </form>
+{% endblock %}

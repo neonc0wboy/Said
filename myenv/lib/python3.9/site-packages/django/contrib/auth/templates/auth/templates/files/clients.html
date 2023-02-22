@@ -1,0 +1,17 @@
+{% extends 'book_app/home.html' %}
+{% block content %}
+
+<form name="createClient">
+    <a class="btn btn-primary mt-2" href="/createClient/" style="margin-left: 40%;">Добавить нового клиента</a>
+</form>
+<p></p>
+
+{% for ej in list_clients %}
+    <div class="alert alert-warning mt-auto">
+        <h3>Клиент: {{ ej }} </h3>
+        <p> Телефон: {{ ej.telephone }}</p>
+        <p></p>
+    </div>
+
+{% endfor %}
+{% endblock %}

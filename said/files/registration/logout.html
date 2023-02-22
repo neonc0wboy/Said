@@ -1,0 +1,9 @@
+{% extends "saidapp/home.html" %}
+
+{% block content %}
+<p> </p>
+<p style="margin-left: 40%">Вы вышли из аккаунта</p>
+<form name="login">
+    <a class="btn btn-primary mt-2" href="{% url 'login' %}" style="margin-left: 40%;">Нажмите, чтобы вернуться к авторизации.</a>
+</form>
+{% endblock %}

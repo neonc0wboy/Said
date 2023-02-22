@@ -1,0 +1,220 @@
+
+
+Wed Feb  1 06:34:31 2023
+Command line: TestDisk
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 6.0.0-12parrot1-amd64 (#1 SMP PREEMPT_DYNAMIC Debian 6.0.12-1parrot1 (2023-01-12)) x86_64
+Compiler: GCC 9.2
+ext2fs lib: 1.46.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.1
+User is not root!
+Hard disk list
+
+
+TestDisk exited normally.
+Using locale 'LC_CTYPE=en_US.UTF-8;LC_NUMERIC=ru_RU.UTF-8;LC_TIME=ru_RU.UTF-8;LC_COLLATE=en_US.UTF-8;LC_MONETARY=ru_RU.UTF-8;LC_MESSAGES=en_US.UTF-8;LC_PAPER=ru_RU.UTF-8;LC_NAME=ru_RU.UTF-8;LC_ADDRESS=ru_RU.UTF-8;LC_TELEPHONE=ru_RU.UTF-8;LC_MEASUREMENT=ru_RU.UTF-8;LC_IDENTIFICATION=ru_RU.UTF-8'.
+
+
+Wed Feb  1 06:34:31 2023
+Command line: TestDisk /debug
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 6.0.0-12parrot1-amd64 (#1 SMP PREEMPT_DYNAMIC Debian 6.0.12-1parrot1 (2023-01-12)) x86_64
+Compiler: GCC 9.2
+ext2fs lib: 1.46.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.1
+/dev/sda: LBA, HPA, LBA48 support
+/dev/sda: size       250069680 sectors
+/dev/sda: user_max   250069680 sectors
+/dev/sda: native_max 250069680 sectors
+/dev/sdb: LBA, HPA, LBA48, DCO support
+/dev/sdb: size       1953525168 sectors
+/dev/sdb: user_max   1953525168 sectors
+/dev/sdb: native_max 1953525168 sectors
+/dev/sdb: dco        1953525168 sectors
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/mmcblk0 - 15 GB / 14 GiB - CHS 486192 4 16, sector size=512
+Disk /dev/sda - 128 GB / 119 GiB - CHS 15566 255 63, sector size=512 - Apacer AS350 128GB, S/N:NO0D21220020079C, FW:T0910A0
+Disk /dev/sdb - 1000 GB / 931 GiB - CHS 121601 255 63, sector size=512 - ST1000LM048-2E7172, S/N:ZDE9B2HD, FW:SDM1
+
+Partition table type (auto): EFI GPT
+Disk /dev/sda - 128 GB / 119 GiB - Apacer AS350 128GB
+Partition table type: Intel
+
+Interface Advanced
+Geometry from i386 MBR: head=256 sector=63
+check_part_i386 1 type EE: no test
+ 1 P EFI GPT                  0   0  2 15566  29 63  250069679
+Incomplete image created.
+
+Analyse Disk /dev/sda - 128 GB / 119 GiB - CHS 15566 255 63
+Geometry from i386 MBR: head=256 sector=63
+check_part_i386 1 type EE: no test
+Current partition structure:
+ 1 P EFI GPT                  0   0  2 15566  29 63  250069679
+
+Warning: Bad ending head (CHS and LBA don't match)
+No partition is bootable
+
+search_part()
+Disk /dev/sda - 128 GB / 119 GiB - CHS 15566 255 63
+NTFS at 0/32/33
+filesystem size           1083392
+sectors_per_cluster       8
+mft_lcn                   45141
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     HPFS - NTFS              0  32 33    67 144 13    1083392
+     NTFS, blocksize=4096, 554 MB / 529 MiB
+NTFS at 15566/19/5
+filesystem size           248745984
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     HPFS - NTFS             82  90  9 15566  19  5  248745984
+     NTFS found using backup sector, blocksize=4096, 127 GB / 118 GiB
+NTFS at 15566/19/5
+filesystem size           248745984
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+NTFS: Can't read MFT
+     HPFS - NTFS          15566  19  5 31049 203  1  248745984
+     NTFS, blocksize=4096, 127 GB / 118 GiB
+This partition ends after the disk limits. (start=250068991, size=248745984, end=498814974, disk end=250069680)
+Search for partition aborted
+Disk /dev/sda - 128 GB / 119 GiB - CHS 15566 255 63
+Check the harddisk size: HD jumper settings, BIOS detection...
+The harddisk (128 GB / 119 GiB) seems too small! (< 255 GB / 237 GiB)
+The following partition can't be recovered:
+     HPFS - NTFS          15566  19  5 31049 203  1  248745984
+     NTFS, blocksize=4096, 127 GB / 118 GiB
+
+Results
+   * HPFS - NTFS              0  32 33    67 144 13    1083392
+     NTFS, blocksize=4096, 554 MB / 529 MiB
+   P HPFS - NTFS             82  90  9 15566  19  5  248745984
+     NTFS found using backup sector, blocksize=4096, 127 GB / 118 GiB
+
+Hint for advanced users: dmsetup may be used if you prefer to avoid rewriting the partition table for the moment:
+echo "0 1083392 linear /dev/sda 2048" | dmsetup create test0
+echo "0 248745984 linear /dev/sda 1323008" | dmsetup create test1
+ntfs_mst_post_read_fixup_warn: magic: 0x00000000  size: 1024   usa_ofs: 0  usa_count: 0: Invalid argument
+Record 0 has no FILE magic (0x0)
+Failed to load $MFT: Input/output error
+ntfs_mst_post_read_fixup_warn: magic: 0x00000000  size: 1024   usa_ofs: 0  usa_count: 0: Invalid argument
+Record 0 has no FILE magic (0x0)
+Failed to load $MFT: Input/output error
+ntfs_mst_post_read_fixup_warn: magic: 0x00000000  size: 1024   usa_ofs: 0  usa_count: 0: Invalid argument
+Record 0 has no FILE magic (0x0)
+Failed to load $MFT: Input/output error
+ntfs_mst_post_read_fixup_warn: magic: 0x00000000  size: 1024   usa_ofs: 0  usa_count: 0: Invalid argument
+Record 0 has no FILE magic (0x0)
+Failed to load $MFT: Input/output error
+ntfs_mst_post_read_fixup_warn: magic: 0x00000064  size: 1024   usa_ofs: 8056  usa_count: 0: Invalid argument
+Record 0 has no FILE magic (0x64)
+Failed to load $MFT: Input/output error
+ntfs_mst_post_read_fixup_warn: magic: 0x00000064  size: 1024   usa_ofs: 8056  usa_count: 0: Invalid argument
+Record 0 has no FILE magic (0x64)
+Failed to load $MFT: Input/output error
+ntfs_mst_post_read_fixup_warn: magic: 0x00000064  size: 1024   usa_ofs: 8056  usa_count: 0: Invalid argument
+Record 0 has no FILE magic (0x64)
+Failed to load $MFT: Input/output error
+ntfs_mst_post_read_fixup_warn: magic: 0x00000064  size: 1024   usa_ofs: 8056  usa_count: 0: Invalid argument
+Record 0 has no FILE magic (0x64)
+Failed to load $MFT: Input/output error
+Can't open backup.log file: No such file or directory
+interface_load
+ntfs_device_testdisk_io_ioctl() unimplemented
+ntfs_device_testdisk_io_ioctl() unimplemented
+Not an exFAT boot sector.
+ntfs_device_testdisk_io_ioctl() unimplemented
+ntfs_device_testdisk_io_ioctl() unimplemented
+
+   * HPFS - NTFS              0  32 33    67 144 13    1083392
+     NTFS, blocksize=4096, 554 MB / 529 MiB
+Can't open filesystem. Filesystem seems damaged.
+ntfs_device_testdisk_io_ioctl() unimplemented
+ntfs_device_testdisk_io_ioctl() unimplemented
+Not an exFAT boot sector.
+ntfs_device_testdisk_io_ioctl() unimplemented
+ntfs_device_testdisk_io_ioctl() unimplemented
+
+   P HPFS - NTFS             82  90  9 15566  19  5  248745984
+     NTFS found using backup sector, blocksize=4096, 127 GB / 118 GiB
+Can't open filesystem. Filesystem seems damaged.
+
+interface_write()
+ 1 * HPFS - NTFS              0  32 33    67 144 13    1083392
+ 2 P HPFS - NTFS             82  90  9 15566  19  5  248745984
+simulate write!
+
+write_mbr_i386: starting...
+write_all_log_i386: starting...
+No extended partition
+
+TestDisk exited normally.
+Using locale 'LC_CTYPE=en_US.UTF-8;LC_NUMERIC=ru_RU.UTF-8;LC_TIME=ru_RU.UTF-8;LC_COLLATE=en_US.UTF-8;LC_MONETARY=ru_RU.UTF-8;LC_MESSAGES=en_US.UTF-8;LC_PAPER=ru_RU.UTF-8;LC_NAME=ru_RU.UTF-8;LC_ADDRESS=ru_RU.UTF-8;LC_TELEPHONE=ru_RU.UTF-8;LC_MEASUREMENT=ru_RU.UTF-8;LC_IDENTIFICATION=ru_RU.UTF-8'.
+
+
+Wed Feb  1 06:40:49 2023
+Command line: TestDisk /log
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 6.0.0-12parrot1-amd64 (#1 SMP PREEMPT_DYNAMIC Debian 6.0.12-1parrot1 (2023-01-12)) x86_64
+Compiler: GCC 9.2
+ext2fs lib: 1.46.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.1
+User is not root!
+Hard disk list
+
+
+TestDisk exited normally.
+Using locale 'LC_CTYPE=en_US.UTF-8;LC_NUMERIC=ru_RU.UTF-8;LC_TIME=ru_RU.UTF-8;LC_COLLATE=en_US.UTF-8;LC_MONETARY=ru_RU.UTF-8;LC_MESSAGES=en_US.UTF-8;LC_PAPER=ru_RU.UTF-8;LC_NAME=ru_RU.UTF-8;LC_ADDRESS=ru_RU.UTF-8;LC_TELEPHONE=ru_RU.UTF-8;LC_MEASUREMENT=ru_RU.UTF-8;LC_IDENTIFICATION=ru_RU.UTF-8'.
+
+
+Wed Feb  1 06:40:49 2023
+Command line: TestDisk /log
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 6.0.0-12parrot1-amd64 (#1 SMP PREEMPT_DYNAMIC Debian 6.0.12-1parrot1 (2023-01-12)) x86_64
+Compiler: GCC 9.2
+ext2fs lib: 1.46.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.1
+/dev/sda: LBA, HPA, LBA48 support
+/dev/sda: size       250069680 sectors
+/dev/sda: user_max   250069680 sectors
+/dev/sda: native_max 250069680 sectors
+/dev/sdb: LBA, HPA, LBA48, DCO support
+/dev/sdb: size       1953525168 sectors
+/dev/sdb: user_max   1953525168 sectors
+/dev/sdb: native_max 1953525168 sectors
+/dev/sdb: dco        1953525168 sectors
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/mmcblk0 - 15 GB / 14 GiB - CHS 486192 4 16, sector size=512
+Disk /dev/sda - 128 GB / 119 GiB - CHS 15566 255 63, sector size=512 - Apacer AS350 128GB, S/N:NO0D21220020079C, FW:T0910A0
+Disk /dev/sdb - 1000 GB / 931 GiB - CHS 121601 255 63, sector size=512 - ST1000LM048-2E7172, S/N:ZDE9B2HD, FW:SDM1
+
+Partition table type (auto): EFI GPT
+Partition table type (auto): EFI GPT
+Disk /dev/sda - 128 GB / 119 GiB - Apacer AS350 128GB
+Partition table type: EFI GPT
+
+Interface Advanced
+ 1 P EFI System                  4096     618495     614400
+ 2 P Linux filesys. data       618496  223508156  222889661
+ 3 P Linux Swap             223508157  250067789   26559633
+Incomplete image created.
+SIGINT detected! TestDisk has been killed.
