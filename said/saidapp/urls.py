@@ -7,6 +7,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import views
 
 urlpatterns =+ [
+        re_path('/', views.home, name='home'),
     url(r'^home$', views.home, name='home'),
     url('products', views.products, name='products'),
     url('markets/', views.Markets, name='markets'),

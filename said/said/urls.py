@@ -72,6 +72,7 @@ urlpatterns += [
     re_path('orders/', views.Orders, name='orders_page'),
     re_path('createOrder/', views.createOrder, name='createOrder'),
     re_path('edit/', views.edit, name='UpdateOrder'),
+    re_path('employee/', views.employee, name='employee'),
     re_path('<int:pk>/delete', views.order_delete, name='DeleteProducts'),
 	
 ]#urlpatterns += static(

@@ -1,25 +1,40 @@
   {% extends 'saidapp/home.html' %}
 {% block content %}
-<form name="create">
-      <a class="btn btn-primary mt-2" href="/create/" style="display: flex;">Добавить новое лекарство</a>
-</form>
-<p></p>
+
+<main role="main">
+	      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Список лекарств</h1>
+        <!--  <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+          --><form name="create">
+            <a class="btn btn-primary my-2" href="/create/" style="display: flex;">Добавить новое лекарство</a>
+            </form>
+            <p></p>
+
+        </div>
+      </section>
+
+
 {% for el in tasks %}
-    <div class="alert alert-warning mt-auto">
+    <div class="container col mt-auto" style="display: flex; background-color: bisque">
       <h3>Продукт: {{ el }} </h3>
       <p> Описание: {{ el.task }}</p>
       <p> Тип товара: {{ el.type_good }}</p>
       <p> Поставщик: {{ el.distributor }} </p>
       <p> Артикул: {{ el.id }} </p>
-      <p> Цена: {{ el.price }} </p>
-      <form name="edit">
-		  <!--<a class="related-widget-wrapper-link change-related" id="change_id_product_deal" data-href-template="/admin/saidapp/product/__fk__/change/?_to_field=id&amp;_popup=1" data-popup="yes" title="Редактировать лекарство" href="/admin/saidapp/product/{{ el.id }}/change/?_to_field=id&amp;_popup=1"><img src="/files/admin/img/icon-changelink.svg" alt="Редактировать"></a>
-		  -->     <a class="btn btn-primary mt-2" href="/edit/" style="display: flex;">Редактировать</a>	      </form>
-<form name="delete">
-            <a class="btn btn-danger mt-2" href="/admin/saidapp/order/{{ el.id }}/delete/" style="display: flex;">Удалить</a>
+      <p id='price{{ el.id }}'> Цена: {{ el.price }} </p>
+      
+        <!--<a class="related-widget-wrapper-link change-related" id="change_id_product_deal" data-href-template="/admin/saidapp/product/__fk__/change/?_to_field=id&amp;_popup=1" data-popup="yes" title="Редактировать лекарство" href="/admin/saidapp/product/{{ el.id }}/change/?_to_field=id&amp;_popup=1"><img src="/files/admin/img/icon-changelink.svg" alt="Редактировать"></a> -->
+        <!--<	    <form name="edit"><a class="related-widget-wrapper-link change-related" href="">EDIT </form>
+-->  <form name="edit"> <a class="btn btn-primary mt-2" href="/admin/saidapp/product/{{ el.id }}/change" style="display: flex;">Редактировать</a> </form>
+      <form name="delete">
+            <a class="btn btn-danger mt-2" href="/admin/saidapp/product/{{ el.id }}/delete" style="display: flex;">Удалить</a>
 </form>
 
 
     </div>
 {% endfor %}
 {% endblock %}
+
+
+

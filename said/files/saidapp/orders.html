@@ -7,9 +7,14 @@
 <p></p>
 
 {% for od in Order %}
-    <div class="alert alert-warning mt-auto">
+    <div class="container col mt-auto" style="display: flex; background-color: bisque">
         <h3>Клиент: {{ od }} </h3>
         <p></p>
+              <form name="edit"> 
+<a class="btn btn-primary mt-2" href="/admin/saidapp/order/{{ od.id }}/change" style="display: flex;">Редактировать</a> </form>
+<form name="delete">
+            <a class="btn btn-danger mt-2" href="/admin/saidapp/order/{{ od.id }}/delete" style="display: flex;">Удалить</a>
+</form>
     </div>
 
 {% endfor %}

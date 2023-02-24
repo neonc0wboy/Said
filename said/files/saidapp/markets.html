@@ -5,11 +5,15 @@
 </form>
 <p></p>
 {% for em in markets %}
-    <div class="alert alert-warning mt-auto">
+    <div class="container col mt-auto" style="display: flex; background-color: bisque">
         <h3>Адрес магазина: {{ em }} </h3>
         <p> ID магазина: {{ em.id }}</p>
         <p> Администратор: {{ em.admin_id }} </p>
         <p></p>
+<form name="edit"> <a class="btn btn-primary mt-2" href="/admin/saidapp/market/{{ el.id }}/change" style="display: flex;">Редактировать</a> </form>
+      <form name="delete">
+            <a class="btn btn-danger mt-2" href="/admin/saidapp/market/{{ el.id }}/delete" style="display: flex;">Удалить</a>
+</form>
     </div>
 
 {% endfor %}

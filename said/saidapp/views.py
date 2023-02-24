@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, DeleteView
 from django.db.models import Value as V
 from django.db.models import Q
-from .models import product, Market, Client, Order
+from .models import product, Market, Client, Order, Employee
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from typing import List, Any, Union
 
@@ -23,11 +23,14 @@ from .forms import TaskForm, ShopForm, ClientForm, OrderForm
 #	return render(request, 'saidapp/home.html')
 # Create your views here.
 def home(request):
-    return render(request, 'saidapp/home.html')
+    if request.user.is_anonymous:
+        return redirect('login')
+    else:
+        return render(request, 'saidapp/home.html')
 
 def logout(request):
     if request.user.is_anonymous:
-        return redirect('home')
+        return redirect('login')
     if request.user.is_authenticated:
         log_out(request)
         return render(request, 'registration/logout.html')
@@ -49,7 +52,7 @@ def products(request):
         else:
             tasks = product.objects.all()
         return render(request, 'saidapp/products.html',
-                      {'title': 'Список товаров', 'tasks': tasks})
+                      {'title': 'Список лекарств', 'tasks': tasks})
 
 def createShop(request):
     if request.user.is_anonymous:
@@ -65,7 +68,6 @@ def createShop(request):
                 return redirect('markets')
             else:
                 error = 'Форма была неверной'
-
         form = ShopForm()
         context = {
             'form': form,
@@ -116,7 +118,7 @@ def order_edit(request):
 
     
 def order_delete(request):
-    return redirect('/admin/saidapp/order/delete/')
+    return render('/admin/saidapp/order/{{el.id}}delete/')
 
     
 def Markets(request):
@@ -145,8 +147,6 @@ from .forms import TaskForm, ShopForm, ClientForm, OrderForm
 
 
 # Create your views here.
-def home(request):
-    return render(request, 'saidapp/home.html')
 
 
 def Markets(request):
@@ -263,12 +263,25 @@ def Client_page(request):
         return render(request, 'saidapp/clients.html',
                       {'title': 'Список клиентов', 'list_clients': list_clients})
 
+def employee(request):
+    if request.user.is_anonymous:
+        return redirect('login')
+    if request.user.is_authenticated:
+        global ej
+        search_query = request.GET.get('search', '')
+        if search_query:
+            list_employee = Employee.objects.filter(Q(surname=search_query))
+        else:
+            list_employee = Employee.objects.all()
+        return render(request, 'saidapp/empoloyee.html',
+                      {'title': 'Список сотрудников', 'list_employee': list_employee})
+
 
 def createClient(request):
     if request.user.is_anonymous:
         return redirect('login')
     if not request.user.has_perm('admin_permission'):
-        return redirect('LogError')
+        return redirect('LogError')	
     if request.user.is_authenticated:
         error = ''
         if request.method == 'POST':
